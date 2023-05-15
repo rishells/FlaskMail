@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Preview</title>
+</head>
+<body>
+    <h1>Email Preview</h1>
+    <p><strong>Subject:</strong> {{ subject }}</p>
+    <p><strong>From:</strong> {{ sender_email }}</p>
+    <p><strong>To:</strong> {{ recipient_email }}</p>
+    <pre>{{ formatted_text }}</pre>
+    <form method="POST" action="/send">
+        <input type="hidden" name="subject" value="{{ subject }}">
+        <input type="hidden" name="sender_email" value="{{ sender_email }}">
+        <input type="hidden" name="recipient_email" value="{{ recipient_email }}">
+        <input type="hidden" name="formatted_text" value="{{ formatted_text }}">
+        <button type="submit">Send Email</button>
+    </form>
+</body>
+</html>
+
