@@ -1,11 +1,17 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import subprocess
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    output = run_shell_script('parameter1', 'parameter2')
+    output = None
+
+    if request.method == 'POST':
+        param1 = request.form['param1']
+        param2 = request.form['param2']
+        output = run_shell_script(param1, param2)
+
     return render_template('index.html', output=output)
 
 def run_shell_script(param1, param2):
